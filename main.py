@@ -193,7 +193,7 @@ dir_create(adr, dr)
 
 driver = webdriver.Chrome()
 
-driver.get('https://lms.yandex.ru/courses/1053/groups/8737')
+driver.get(adr)  # елки палки вы там со всеми протоколами вводите, а то не заработает
 time.sleep(2)
 log, pas = str(input('Введите ваш логин (почту вроде) и пароль через пробел: '))
 login(driver, log, pas)
