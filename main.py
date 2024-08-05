@@ -149,28 +149,47 @@ def main(driver, esh):
             ref = str(ref).split('/')[1:-3]
             try:
                 ref.append(str(ref1488).split('/')[-3].split('"')[0])
+                
                 os.chdir('D:/')
                 rf = 'D:/'
+                print(ref)
                 for i in range(len(ref)):
                     rf += ref[i] + '/'
-                    print(1161)
                     try:
                         os.mkdir(rf)
                     except:
                         os.chdir(rf)
                 os.chdir(rf)
                 
+                
                 driver.find_element(By.XPATH, '/html[1]/body[1]/div[2]/div[1]/div[2]/div[2]/div[1]/main[1]/div[1]/a[1]').click()
-                time.sleep(3)
+                time.sleep(5)
+
+                uslovie = str(BeautifulSoup(driver.page_source, features='lxml'). find('div', {'class': 'Sideblock-Content'}))
+                dobavka_mozhno = str(BeautifulSoup(driver.page_source, features='lxml').find('div', {'class': 'Popup2 Popup2_visible Sideblock Sideblock_visible Sideblock_hasAnimation Sideblock_side_right Sideblock_theme_normal'}))
+
+                driver.find_element(By.XPATH, '/html[1]/body[1]/div[9]/div[1]/div[1]/button[1]').click()
+
+                time.sleep(1)
 
                 tecst = driver.page_source
                 tecst1 = BeautifulSoup(driver.page_source, features='lxml')
                 ref = tecst1.find('a', {'class': 'nav-tab nav-tab_back nav-tab_view_button'})
                 tecst = tecst.replace(str(ref)[:96], str(ref)[:96] + '/1.html')
+                ref1 = tecst1.find('a', {'class': 'nav-tab nav-tab_view_button'})
+                tecst = tecst.replace(str(ref1)[:95], str(ref1)[:95] + '/2.html')
+                tecst = tecst[0:-12] + uslovie + tecst[-12:-1]
 
+                print(1161)
                 file = open('1.html', 'w+', encoding='utf-8')
                 file.write(tecst)
                 file.close()
+
+                file = open('2.html', 'w+', encoding='utf-8')
+                file.write(uslovie)
+                file.close()
+
+
 
                 
             except:
