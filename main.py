@@ -101,7 +101,7 @@ def main(driver, esh):
                 rf += ((str(ref1)[59:100]).split('/'))[_] + '/'
             os.mkdir(dr1488 + '/' + ((str(ref1)[59:100]).split('/'))[-2])
             os.mkdir(dr1488 + '/' + ((str(ref1)[59:100]).split('/'))[-2] + '/' + ((str(ref1)[59:100]).split('/'))[-1])
-            os.chdir(dr1488 + '/' + ((str(ref1)[59:100]).split('/'))[-2] + '/' + ((str(ref1)[59:100]).split('/'))[-1])
+            os.chdir(dr1488 + '/' + ((str(ref1)[59:100]).split('/'))[-2] + '/' + ((str(ref1)[59:100]).split('/'))[-1])  # а нахуй тут собственно 2 строчки одинаковых
             tecst = str(driver.page_source)
             tecst1 = BeautifulSoup(tecst, features='lxml')
             ref = tecst1.find('a', {'class': 'nav-tab nav-tab_back nav-tab_view_button'})
